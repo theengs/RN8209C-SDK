@@ -1,15 +1,20 @@
 #ifndef __LED__RELAY_H
 #define __LED__RELAY_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include<stdint.h>
 
-#define LED_BLUE_PIN	    	14   
-#define LED_GREEN_PIN	    	27     
-#define LED_RED_PIN	   		    26     
+#define LED_BLUE_PIN	    	GPIO_NUM_14
+#define LED_GREEN_PIN	    	GPIO_NUM_27
+#define LED_RED_PIN	   		    GPIO_NUM_26
 
 #define GPIO_OUTPUT_PIN_LED  ((1ULL << LED_BLUE_PIN) | (1ULL << LED_GREEN_PIN) | (1ULL << LED_RED_PIN) )
 
-#define LED_STATE_OFF			0x01   	
-#define LED_STATE_ON			0x00	
+#define LED_STATE_OFF			0x01
+#define LED_STATE_ON			0x00
 
 #define  	LED_BLUE_ON		gpio_set_level(LED_BLUE_PIN, LED_STATE_ON)
 #define  	LED_BLUE_OFF	gpio_set_level(LED_BLUE_PIN, LED_STATE_OFF)
@@ -27,5 +32,9 @@
 #define 	LED_PURPLE_OFF	LED_RED_OFF;LED_BLUE_OFF
 
 void   user_led_init(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

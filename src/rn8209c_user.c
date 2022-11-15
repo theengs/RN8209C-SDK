@@ -1,16 +1,16 @@
 /*************************************************************************
 *   	Copyright 2019-2021  MOKO TECHNOLOGY LTD
 *
-*	Licensed under the Apache License, Version 2.0 (the "License");   
-*	you may not use this file except in compliance with the License.   
-*	You may obtain a copy of the License at  
+*	Licensed under the Apache License, Version 2.0 (the "License");
+*	you may not use this file except in compliance with the License.
+*	You may obtain a copy of the License at
 *
-*	http://www.apache.org/licenses/LICENSE-2.0   
+*	http://www.apache.org/licenses/LICENSE-2.0
 *
-*	Unless required by applicable law or agreed to in writing, software   
-*	distributed under the License is distributed on an "AS IS" BASIS,   
-*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   
-*	See the License for the specific language governing permissions and   
+*	Unless required by applicable law or agreed to in writing, software
+*	distributed under the License is distributed on an "AS IS" BASIS,
+*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*	See the License for the specific language governing permissions and
 *	limitations under the License.
 **************************************************************************/
 
@@ -18,7 +18,7 @@
 #include "driver/gpio.h"
 #include "driver/uart.h"
 #include "rn8209_flash.h"
-#include "led.h"
+#include "mk114_led.h"
 #include "cJSON.h"
 
 
@@ -37,7 +37,7 @@ void set_user_param(STU_8209C param)
 	rn8209c_debug("the rn8209c SDK ver is %s\n",SDK_VER);
 }
 
-/*********************************Ð¾Æ¬Çý¶¯½Ó¿Úº¯Êý*************************************/
+/*********************************Ð¾Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿Úºï¿½ï¿½ï¿½*************************************/
 static void s_delay_ms(int ms)
 {
       vTaskDelay(ms / portTICK_PERIOD_MS);
@@ -97,10 +97,10 @@ static void s_rn8209c_pin_restart(void)
     s_rn8209c_uart_init();
 
 }
-/*************************************Ð¾Æ¬Çý¶¯½Ó¿Úº¯Êý***********************************************/
+/*************************************Ð¾Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿Úºï¿½ï¿½ï¿½***********************************************/
 
 
-/**************************************Ð£×¼Ïà¹Øº¯Êý*************************************/
+/**************************************Ð£×¼ï¿½ï¿½Øºï¿½ï¿½ï¿½*************************************/
 static void calibrate_success_deal( )
 {
 	stu8209c_flash.param = stu8209c_user;
@@ -125,7 +125,7 @@ void calibrate_start_deal()
 }
 void relay_open()
 {
-	
+
 	#define RN8209_RELAY_PIN	25
 	gpio_config_t io_conf;
     	io_conf.intr_type = GPIO_INTR_DISABLE;
@@ -133,7 +133,7 @@ void relay_open()
     	io_conf.pin_bit_mask = 1UL<<RN8209_RELAY_PIN;
     	io_conf.pull_down_en = 0;
     	io_conf.pull_up_en = 1;
-    
+
     	gpio_config(&io_conf);
 	gpio_set_level(RN8209_RELAY_PIN,1);
 }
@@ -163,13 +163,13 @@ static int cmd_uart_rx(uint8_t *dataout,int len,int time_out)
 {
     return uart_read_bytes(UART_NUM_0, dataout, (uint32_t )len, time_out/portTICK_PERIOD_MS);
 }
-/**************************************Ð£×¼Ïà¹Øº¯Êý*************************************/
+/**************************************Ð£×¼ï¿½ï¿½Øºï¿½ï¿½ï¿½*************************************/
 
 
 
 bool init_8209c_interface()
 {
-//Stu8209c  ½á¹¹Ìå¸³Öµ
+//Stu8209c  ï¿½á¹¹ï¿½å¸³Öµ
     return  rn8209c_init(s_delay_ms,\
                          s_uart_tx ,\
                          s_uart_rx,\
@@ -288,11 +288,11 @@ void rn8209_process(uint8_t cmd_mode)
 								stu8209c_user.EC = EC->valueint;
 								stu8209c_user.KV = KV->valuedouble;
 								stu8209c_user.R = R->valueint;
-								mode = 0;	
+								mode = 0;
 								init_flag = 1;
 								calibrate_start_deal();
 								init_result = 0;
-								cJSON_AddStringToObject(resp,"resp","ack");	
+								cJSON_AddStringToObject(resp,"resp","ack");
 							}
 							else
 								cJSON_AddStringToObject(resp,"resp","nack");
@@ -310,7 +310,7 @@ void rn8209_process(uint8_t cmd_mode)
 							cJSON *voltage = cJSON_GetObjectItem(root,"voltage");
 							cJSON *current = cJSON_GetObjectItem(root,"current");
 							cJSON *power = cJSON_GetObjectItem(root,"power");
-							
+
 							cJSON *resp = cJSON_CreateObject();
 							cJSON_AddNumberToObject(resp,"set",2);
 							if(step!=NULL  && voltage!=NULL && current !=NULL && power !=NULL && init_result)
@@ -336,7 +336,7 @@ void rn8209_process(uint8_t cmd_mode)
 						{
 							cJSON *result = cJSON_GetObjectItem(root,"result");
 							cJSON *deviation = cJSON_GetObjectItem(root,"deviation");
-							
+
 							cJSON *resp = cJSON_CreateObject();
 							cJSON_AddNumberToObject(resp,"set",3);
 							if(result!=NULL && deviation!=NULL && result->valueint==1)
@@ -416,7 +416,7 @@ void rn8209_process(uint8_t cmd_mode)
 
 	switch(mode)
 	{
-		case 0: //³õÊ¼»¯²ÎÊý
+		case 0: //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if(init_8209c_interface()==1)
 			{
 				mode = 2;
@@ -452,7 +452,7 @@ void rn8209_process(uint8_t cmd_mode)
 				}
 			}
 			break;
-		case 1:  //Ð£×¼²½Öè
+		case 1:  //Ð£×¼ï¿½ï¿½ï¿½ï¿½
 			if(calibrate_step==1)
 			{
 				rn8209c_calibrate_voltage_current(phase_A,ref_voltage,ref_current);
@@ -502,7 +502,7 @@ void rn8209_process(uint8_t cmd_mode)
 			}
 			{
 				cJSON *resp = cJSON_CreateObject();
-				cJSON_AddNumberToObject(resp,"set",2);	
+				cJSON_AddNumberToObject(resp,"set",2);
 				cJSON_AddNumberToObject(resp,"step",calibrate_step);
 				cJSON_AddNumberToObject(resp,"voltage",rn8209_value.voltage);
 				cJSON_AddNumberToObject(resp,"current",rn8209_value.current);
@@ -551,14 +551,14 @@ void rn8209_user_init(uint8_t cmd_mode)
 {
 	if(cmd_mode)
 	{
-		relay_open(); 
+		relay_open();
 		cmd_uart_init();
 	}
 	while(1)
 	{
 		rn8209_process(cmd_mode);
 	}
-}	
+}
 void rn8209c_process_init(uint8_t cmd)
 {
 	read_rn8209_param();

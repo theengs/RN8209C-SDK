@@ -1,5 +1,10 @@
 #ifndef WS2812_52832_H____
 #define WS2812_52832_H____
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -17,6 +22,11 @@ void setcolor(uint32_t rgb);
 void setcolor_test(uint32_t *rgb);
 void set_network_led(uint32_t rgb);
 void ws2812_control_init( );// Update the LEDs to the new state. Call as needed.// This function will block the current task until the RMT peripheral is finished sending // the entire sequence.
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif
 
 

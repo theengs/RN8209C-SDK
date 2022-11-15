@@ -1,20 +1,24 @@
 /*************************************************************************
 *   	Copyright 2019-2021  MOKO TECHNOLOGY LTD
 *
-*	Licensed under the Apache License, Version 2.0 (the "License");   
-*	you may not use this file except in compliance with the License.   
-*	You may obtain a copy of the License at  
+*	Licensed under the Apache License, Version 2.0 (the "License");
+*	you may not use this file except in compliance with the License.
+*	You may obtain a copy of the License at
 *
-*	http://www.apache.org/licenses/LICENSE-2.0   
+*	http://www.apache.org/licenses/LICENSE-2.0
 *
-*	Unless required by applicable law or agreed to in writing, software   
-*	distributed under the License is distributed on an "AS IS" BASIS,   
-*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   
-*	See the License for the specific language governing permissions and   
+*	Unless required by applicable law or agreed to in writing, software
+*	distributed under the License is distributed on an "AS IS" BASIS,
+*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*	See the License for the specific language governing permissions and
 *	limitations under the License.
 **************************************************************************/
 #ifndef RN8209_U_H__
 #define RN8209_U_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include "string.h"
 #include <stdio.h>
@@ -103,60 +107,64 @@ typedef void (*rn8209c_tx_pin_reset_fun)(void);
 
 typedef struct
 {
-    float power_start;  //Æô¶¯¹¦ÂÊ
-    uint32_t EC;  //Âö³å³£Êý
-    float KV;  //·ÖÑ¹ÏµÊý
-    uint32_t  R;  //µçÁ÷µç×è
-    uint16_t GPQA;    //AÍ¨µÀ¹¦ÂÊÔöÒæÐ£Õý-----------------
-    uint16_t GPQB;    //BÍ¨µÀ¹¦ÂÊÔöÒæÐ£Õý
-    uint8_t  PhsA;    //AÍ¨µÀÏàÎ»Ð£Õý--------------------------
-    uint8_t  PhsB;    //BÍ¨µÀÏàÎ»Ð£Õý
-    uint16_t Cst_QPhsCal; //ÎÞ¹¦ÏàÎ»Ð£Õý------------------------
-    uint16_t APOSA;   //AÍ¨µÀÓÐ¹¦¹¦ÂÊoffsetÐ£Õý--------------------
-    uint16_t APOSB;   //BÍ¨µÀÓÐ¹¦¹¦ÂÊoffsetÐ£Õý
-    uint16_t RPOSA;   //AÍ¨µÀÎÞ¹¦¹¦ÂÊoffsetÐ£Õý
-    uint16_t RPOSB;   //BÍ¨µÀÎÞ¹¦¹¦ÂÊoffsetÐ£Õý
-    uint16_t IARMSOS; //AÍ¨µÀµçÁ÷ÓÐÐ§ÖµoffsetÐ£Õý------------------
-    uint16_t IBRMSOS; //BÍ¨µÀµçÁ÷ÓÐÐ§ÖµoffsetÐ£Õý
-    uint16_t IBGain;  //BÍ¨µÀµçÁ÷ÔöÒæ
+    float power_start;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    uint32_t EC;  //ï¿½ï¿½ï¿½å³£ï¿½ï¿½
+    float KV;  //ï¿½ï¿½Ñ¹Ïµï¿½ï¿½
+    uint32_t  R;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    uint16_t GPQA;    //AÍ¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½-----------------
+    uint16_t GPQB;    //BÍ¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½
+    uint8_t  PhsA;    //AÍ¨ï¿½ï¿½ï¿½ï¿½Î»Ð£ï¿½ï¿½--------------------------
+    uint8_t  PhsB;    //BÍ¨ï¿½ï¿½ï¿½ï¿½Î»Ð£ï¿½ï¿½
+    uint16_t Cst_QPhsCal; //ï¿½Þ¹ï¿½ï¿½ï¿½Î»Ð£ï¿½ï¿½------------------------
+    uint16_t APOSA;   //AÍ¨ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½offsetÐ£ï¿½ï¿½--------------------
+    uint16_t APOSB;   //BÍ¨ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½offsetÐ£ï¿½ï¿½
+    uint16_t RPOSA;   //AÍ¨ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ï¿½ï¿½offsetÐ£ï¿½ï¿½
+    uint16_t RPOSB;   //BÍ¨ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ï¿½ï¿½offsetÐ£ï¿½ï¿½
+    uint16_t IARMSOS; //AÍ¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ÖµoffsetÐ£ï¿½ï¿½------------------
+    uint16_t IBRMSOS; //BÍ¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ÖµoffsetÐ£ï¿½ï¿½
+    uint16_t IBGain;  //BÍ¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    uint32_t Ku;//µçÑ¹±ÈÀý-----------------
+    uint32_t Ku;//ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½-----------------
     uint32_t Kia;//--------------------
     uint32_t Kib;
-    uint16_t deviation;//Îó²î
+    uint16_t deviation;//ï¿½ï¿½ï¿½
 }__attribute__((packed)) STU_8209C;
 
-  
+
 
 //extern STU_8209C Stu8209c;
 bool rn8209c_init( rn8209c_delay_ms_fun delay,\
                   rn8209c_uart_tx_fun uart_tx,\
                   rn8209c_uart_rx_fun uart_rx,\
                   rn8209c_tx_pin_reset_fun tx_pin_reset,\
-                  STU_8209C param);/*½Ó¿Ú³õÊ¼»¯*/
+                  STU_8209C param);/*ï¿½Ó¿Ú³ï¿½Ê¼ï¿½ï¿½*/
 
 
 uint8_t rn8209c_init_para( void);
 
-uint8_t rn8209c_read_voltage(uint32_t *vol);/*À©´ó1000±¶*/
-uint8_t rn8209c_read_current(uint8_t phase,uint32_t *current);/* À©´ó10000±¶*/
-uint8_t rn8209c_read_power(uint8_t phase,uint32_t *p);/*À©´ó10000±¶*/
-uint8_t rn8209c_read_power_energy(uint8_t phase,uint32_t *p); /*À©´ó1000±¶*/
-uint8_t rn8209c_read_power_Q(uint8_t phase,uint32_t *p);/*À©´ó10000*/
+uint8_t rn8209c_read_voltage(uint32_t *vol);/*ï¿½ï¿½ï¿½ï¿½1000ï¿½ï¿½*/
+uint8_t rn8209c_read_current(uint8_t phase,uint32_t *current);/* ï¿½ï¿½ï¿½ï¿½10000ï¿½ï¿½*/
+uint8_t rn8209c_read_power(uint8_t phase,uint32_t *p);/*ï¿½ï¿½ï¿½ï¿½10000ï¿½ï¿½*/
+uint8_t rn8209c_read_power_energy(uint8_t phase,uint32_t *p); /*ï¿½ï¿½ï¿½ï¿½1000ï¿½ï¿½*/
+uint8_t rn8209c_read_power_Q(uint8_t phase,uint32_t *p);/*ï¿½ï¿½ï¿½ï¿½10000*/
 uint8_t rn8209c_read_emu_status(void);
 
-void rn8209c_calibrate_voltage_current(uint8_t phase,uint32_t voltage_real,uint32_t current_real );  /*1.0 ½«Ð£±íÌ¨µçÑ¹ÉèÖÃ220V,5A, 1.0¹¦ÂÊÐ£×¼*/
-void rn8209c_calibrate_power_k(uint8_t phase,uint32_t ku,uint32_t ki);/*2.0 ½«Ð£±íÌ¨µçÑ¹ÉèÖÃ220V,5A, 1.0¹¦ÂÊÐ£×¼*/
-void rn8209c_calibrate_phs(uint8_t phase,uint32_t power_ref);/* 3 .0 ½«Ð£±íÌ¨µçÑ¹ÉèÖÃ220V,5A£¬0.5L*/
-void rn8209c_calibrate_power_offset(uint8_t phase,uint32_t power_ref);/* 4.0 5% Ib ¹¦ÂÊOffsetÐ£Õý ½«Ð£±íÌ¨µçÑ¹ÉèÖÃ220V,0.25A,1.0 */
-void rn8209c_calibrate_power_Q(uint8_t phase,uint32_t power_q_ref);/*5.0 ½«Ð£±íÌ¨µçÑ¹ÉèÖÃ220V,16A, 0.5ÎÞ¹¦Ð£×¼*/
-void rn8209c_calibrate_current_offset(uint8_t phase) ;/*6.0 µçÁ÷OffsetÐ£Õý½«Ð£±íÌ¨µçÑ¹ÉèÖÃ220V,0A,1.0£¬Ö»Ìá¹©µçÑ¹*/
+void rn8209c_calibrate_voltage_current(uint8_t phase,uint32_t voltage_real,uint32_t current_real );  /*1.0 ï¿½ï¿½Ð£ï¿½ï¿½Ì¨ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½220V,5A, 1.0ï¿½ï¿½ï¿½ï¿½Ð£×¼*/
+void rn8209c_calibrate_power_k(uint8_t phase,uint32_t ku,uint32_t ki);/*2.0 ï¿½ï¿½Ð£ï¿½ï¿½Ì¨ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½220V,5A, 1.0ï¿½ï¿½ï¿½ï¿½Ð£×¼*/
+void rn8209c_calibrate_phs(uint8_t phase,uint32_t power_ref);/* 3 .0 ï¿½ï¿½Ð£ï¿½ï¿½Ì¨ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½220V,5Aï¿½ï¿½0.5L*/
+void rn8209c_calibrate_power_offset(uint8_t phase,uint32_t power_ref);/* 4.0 5% Ib ï¿½ï¿½ï¿½ï¿½OffsetÐ£ï¿½ï¿½ ï¿½ï¿½Ð£ï¿½ï¿½Ì¨ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½220V,0.25A,1.0 */
+void rn8209c_calibrate_power_Q(uint8_t phase,uint32_t power_q_ref);/*5.0 ï¿½ï¿½Ð£ï¿½ï¿½Ì¨ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½220V,16A, 0.5ï¿½Þ¹ï¿½Ð£×¼*/
+void rn8209c_calibrate_current_offset(uint8_t phase) ;/*6.0 ï¿½ï¿½ï¿½ï¿½OffsetÐ£ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½Ì¨ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½220V,0A,1.0ï¿½ï¿½Ö»ï¿½á¹©ï¿½ï¿½Ñ¹*/
 
 STU_8209C read_stu8209c_calibrate_param(void);
 void rn8209c_calibrate_power_k_phase_a(void);
 void rn8209c_calibrate_power_k_phase_b(void);
 uint8_t rn8209c_read_energy(uint32_t *energy);
 extern  float  kp;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 
