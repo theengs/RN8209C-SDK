@@ -61,7 +61,8 @@ static void s_rn8209c_uart_init(void)
         .data_bits = UART_DATA_8_BITS,
         .parity    = UART_PARITY_EVEN,
         .stop_bits = UART_STOP_BITS_1,
-        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE
+        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+        .source_clk = UART_SCLK_REF_TICK,
     };
 
  //   uart_driver_delete(UART_NUM_2);
